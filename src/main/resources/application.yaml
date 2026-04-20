@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: rate_my_first_line
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/medevac
+    username: rate_my_first_line
+    password: rate_my_first_line11
+
+  jpa:
+    generate-ddl: false
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration

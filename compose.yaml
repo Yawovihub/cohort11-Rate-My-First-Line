@@ -1,0 +1,12 @@
+services:
+  postgres-db:
+    container_name: rate_my_first_line
+    image: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: rate_my_first_line
+      POSTGRES_PASSWORD: rate_my_first_line11
+      POSTGRES_DB: rate_my_first_line
+      POSTGRES_HOST_AUTH_METHOD: password
+    ports:
+      - "5447:5432"
