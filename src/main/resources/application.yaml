@@ -4,7 +4,7 @@ spring:
 
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/medevac
+    url: jdbc:postgresql://localhost:5447/rate_my_first_line
     username: rate_my_first_line
     password: rate_my_first_line11
 
