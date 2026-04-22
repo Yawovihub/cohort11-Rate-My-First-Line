@@ -14,13 +14,13 @@ public class Review {
 private Long id;
 
     public Review(Long leaderId, double rating, String description, LocalDate date) {
-        LeaderId = leaderId;
+        this.leaderId = leaderId;
         this.rating = rating;
         this.description = description;
         this.date = date;
     }
 
-   private Long LeaderId;
+   private Long leaderId;
 
     private double rating;
 
@@ -54,11 +54,11 @@ private Long id;
     }
 
     public Long getLeaderId() {
-        return LeaderId;
+        return leaderId;
     }
 
     public Review setLeaderId(Long leaderId) {
-        LeaderId = leaderId;
+        leaderId = leaderId;
         return this;
     }
 
