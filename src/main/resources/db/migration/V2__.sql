@@ -2,7 +2,7 @@ CREATE SEQUENCE IF NOT EXISTS leader_seq START WITH 1 INCREMENT BY 50;
 
 CREATE SEQUENCE IF NOT EXISTS review_seq START WITH 1 INCREMENT BY 50;
 
-CREATE TABLE leader
+CREATE TABLE IF NOT EXISTS leader
 (
     id        BIGINT NOT NULL,
     fname     VARCHAR(255),
@@ -11,7 +11,7 @@ CREATE TABLE leader
     CONSTRAINT pk_leader PRIMARY KEY (id)
 );
 
-CREATE TABLE review
+CREATE TABLE IF NOT EXISTS review
 (
     id          BIGINT           NOT NULL,
     leader_id   BIGINT           NOT NULL,
@@ -22,4 +22,5 @@ CREATE TABLE review
 );
 
 ALTER TABLE review
-    ADD CONSTRAINT FK_REVIEW_ON_LEADERID FOREIGN KEY (leader_id) REFERENCES leader (id);
+    ADD CONSTRAINT fk_review_on_leaderid
+        FOREIGN KEY (leader_id) REFERENCES leader (id)

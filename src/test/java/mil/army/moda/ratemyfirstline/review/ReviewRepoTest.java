@@ -31,7 +31,11 @@ class ReviewRepoTest {
 
     }
 
+    @Test
+    void itShouldDeleteReview() {
+        doNothing().when(reviewRepo).delete(deleteRevpe);
 
+    }
 
 
 

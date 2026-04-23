@@ -1,5 +1,6 @@
 package mil.army.moda.ratemyfirstline.review;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,7 +27,18 @@ public class ReviewService {
         return reviewRepo.findById(id).orElseThrow();
     }
 
-    public Review deleteReview (Long id) {
+    public String deleteReview (Long id) {
+        if(id == null){
+            throw new IllegalArgumentException("review Id cannot be null");
+        }
+        try{
+            reviewRepo.deleteById(id);
+            return "deleted";
+        } catch(EmptyResultDataAccessException e){
+            return "not found";
+
+        }
+
 
 
     }
