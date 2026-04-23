@@ -24,13 +24,24 @@ public class LeaderController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Leader> getById(@PathVariable Long id){
-        try {
-            Optional<Leader> leader = leaderService.getById(id);
+        Optional<Leader> leader = leaderService.getById(id);
+        if (leader.isPresent()){
             return ResponseEntity.ok(leader.get());
-        } catch (IllegalArgumentException e) {
+        }else{
             return ResponseEntity.notFound().build();
         }
+    }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Leader> updateById(@PathVariable Long id, @RequestBody Leader leader){
+        Optional<Leader> foundLeader = leaderService.getById(id);
+        if (foundLeader.isPresent()){
+            Leader updatedLeader = leaderService.saveLeader(leader);
+            return ResponseEntity.ok(updatedLeader);
+        }
+        else{
+            return ResponseEntity.notFound().build();
+        }
     }
 
 }

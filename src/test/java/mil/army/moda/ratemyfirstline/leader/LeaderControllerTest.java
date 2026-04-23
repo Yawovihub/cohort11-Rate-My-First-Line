@@ -14,8 +14,7 @@ import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -64,7 +63,21 @@ public class LeaderControllerTest {
                 .andExpect(content().json(objectMapper.writeValueAsString(leader4)));
 
         verify(leaderService).getById(1L);
+    }
+    @Test
+    void shouldUpdateLeaderById() throws Exception{
+        //Act
 
+        when(leaderService.getById(anyLong())).thenReturn(Optional.of(leader4));
+        Leader newLeader = new Leader("Pascal", "Putnam", "Software Developer");
+        when(leaderService.saveLeader(any(Leader.class))).thenReturn(newLeader);
+        mockMvc.perform(put("/api/v1/leader/" + 1L)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(newLeader))
+                )
+                .andExpect(status().is2xxSuccessful())
+                .andExpect(content().json(objectMapper.writeValueAsString(newLeader)));
 
+        verify(leaderService, times(1)).getById(1L);
     }
 }
