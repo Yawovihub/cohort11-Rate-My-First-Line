@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -14,6 +15,12 @@ public class LeaderController {
 
     public LeaderController(LeaderService leaderService) {
         this.leaderService = leaderService;
+    }
+
+    @GetMapping("/all")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Leader> leaders(){
+        return leaderService.getAll();
     }
 
     @PostMapping

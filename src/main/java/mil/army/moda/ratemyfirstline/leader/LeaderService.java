@@ -3,6 +3,7 @@ package mil.army.moda.ratemyfirstline.leader;
 
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -26,5 +27,8 @@ public class LeaderService {
 
     public void deleteLeader(Leader leader){
             leaderRepository.delete(leader);
+    }
+    public List<Leader> getAll(){
+        return leaderRepository.findAll();
     }
 }
