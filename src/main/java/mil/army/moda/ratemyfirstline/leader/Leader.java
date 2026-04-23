@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 public class Leader {
     @Id
     @GeneratedValue
-    private Long id;
+    public Long id;
     private String fname;
     private String lname;
     private String jobTitle;
