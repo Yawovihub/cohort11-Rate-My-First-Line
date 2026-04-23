@@ -25,4 +25,10 @@ public class ReviewService {
     public Review findReviewById (Long id){
         return reviewRepo.findById(id).orElseThrow();
     }
+
+    public Review deleteReview (Long id) {
+
+
+    }
+
 }

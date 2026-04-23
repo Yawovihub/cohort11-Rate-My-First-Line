@@ -1,5 +1,6 @@
 package mil.army.moda.ratemyfirstline.review;
 
+import mil.army.moda.ratemyfirstline.leader.Leader;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.Mock;
 import org.springframework.http.MediaType;
@@ -55,12 +56,13 @@ class ReviewControllerTest {
     @BeforeEach
     void setup(){
         firstReview = new Review(
-                1L,
+                new Leader(),
                 3.0,
                 "This works",
                 LocalDate.now()
 
         );
+        firstReview.setId(1L);
     when(reviewService.saveReview(any(Review.class))).thenReturn(firstReview);
     }
 
