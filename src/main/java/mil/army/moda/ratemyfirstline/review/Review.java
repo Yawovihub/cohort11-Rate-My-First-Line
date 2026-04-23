@@ -1,8 +1,7 @@
 package mil.army.moda.ratemyfirstline.review;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import mil.army.moda.ratemyfirstline.leader.Leader;
 
 import java.time.LocalDate;
 
@@ -13,14 +12,21 @@ public class Review {
 @Id
 private Long id;
 
-    public Review(Long leaderId, double rating, String description, LocalDate date) {
-        this.leaderId = leaderId;
+
+
+    public Review(Leader leader, double rating, String description, LocalDate date) {
+        this.leader = leader;
         this.rating = rating;
         this.description = description;
         this.date = date;
     }
 
-   private Long leaderId;
+
+    @ManyToOne
+    @JoinColumn(name="leaderId", referencedColumnName = "id", nullable = false)
+    private Leader leader;
+
+
 
     private double rating;
 
@@ -53,12 +59,9 @@ private Long id;
         return this;
     }
 
-    public Long getLeaderId() {
-        return leaderId;
-    }
 
-    public Review setLeaderId(Long leaderId) {
-        leaderId = leaderId;
+    public Review setLeader(Leader leader) {
+        this.leader = leader;
         return this;
     }
 
