@@ -1,4 +1,5 @@
-import { defineConfig } from 'vitest/config'
+/// <reference types="vitest/config" />
+import { defineConfig } from 'vite'
 import react, { reactCompilerPreset } from '@vitejs/plugin-react'
 import babel from '@rolldown/plugin-babel'
 
@@ -9,6 +10,8 @@ export default defineConfig({
     babel({ presets: [reactCompilerPreset()] })
   ],
   test: {
-    setupFiles : './src/__tests__/setupTests.ts'
+    globals: true,
+    environment: 'jsdom',
+    setupFiles : 'src/__tests__/setupTests.ts'
   }
 })

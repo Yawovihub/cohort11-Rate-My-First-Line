@@ -1,4 +1,0 @@
-
-describe('Leader Service', () => {
-
-});
