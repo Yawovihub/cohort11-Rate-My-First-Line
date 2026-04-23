@@ -1,14 +1,19 @@
 package mil.army.moda.ratemyfirstline.leader;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import mil.army.moda.ratemyfirstline.review.Review;
+
+import java.util.List;
 
 @Entity
 public class Leader {
     @Id
     @GeneratedValue
-    public Long id;
+    private Long id;
+
+    @OneToMany(mappedBy = "leader")
+    private List<Review> reviews;
+
     private String fname;
     private String lname;
     private String jobTitle;
