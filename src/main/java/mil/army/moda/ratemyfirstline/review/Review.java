@@ -23,7 +23,7 @@ private Long id;
 
 
     @ManyToOne
-    @JoinColumn(name="leaderId", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name="leader_id", referencedColumnName = "id", nullable = false)
     private Leader leader;
 
 
