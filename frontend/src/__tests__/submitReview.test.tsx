@@ -6,11 +6,13 @@ describe('Submit Review Form Testing', () => {
     it('should display header', () => {
 
         render(<SubmitReview/>);
-        screen.findByRole('heading');
+        screen.findByRole('button');
+        screen.findByRole('textbox')
 
         expect(
-            screen.getByRole('heading', {name: /This is a header/i}),
+            screen.getByRole('button', {name: /submit/i}),
         ).toBeInTheDocument();
+
     });
 
 });

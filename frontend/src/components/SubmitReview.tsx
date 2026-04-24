@@ -33,6 +33,9 @@ const SubmitReview: React.FC = () => {
 
     return (
         <div>
+
+            <h1>Submit a Review</h1>
+
             <form onSubmit={handleSubmit} className="formSubmit">
                 <label>Name</label>
                 {loading ? (
@@ -50,13 +53,14 @@ const SubmitReview: React.FC = () => {
                         ))}
                     </select>
                 )}
-
+                <div>
                 <label>Description</label>
                 <input
                     type="text"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                 />
+                </div>
 
                 <label>Rating:</label>
 
