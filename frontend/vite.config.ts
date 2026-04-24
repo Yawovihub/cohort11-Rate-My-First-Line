@@ -1,17 +1,35 @@
 /// <reference types="vitest/config" />
+
 import { defineConfig } from 'vite'
 import react, { reactCompilerPreset } from '@vitejs/plugin-react'
 import babel from '@rolldown/plugin-babel'
 
 // https://vite.dev/config/
 export default defineConfig({
+  server: {
+    port: 3000,
+    strictPort: true,
+    hmr: {
+      clientPort: 3000,
+    },
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+      },
+    },
+  },
   plugins: [
     react(),
-    babel({ presets: [reactCompilerPreset()] })
+    babel({ presets: [reactCompilerPreset()] }),
   ],
+  build: {
+    outDir: 'build',
+  },
   test: {
-    globals: true,
-    environment: 'jsdom',
-    setupFiles : 'src/__tests__/setupTests.ts'
-  }
-})
+    globals: true, // Allows using `describe`, `it`, `expect` without imports
+    environment: 'jsdom', // Simulates a browser environment
+    setupFiles: './src/setupTests.ts', // File for test setup (see below)
+    css: false, // Optional: Include CSS in tests if needed
+  },
+});

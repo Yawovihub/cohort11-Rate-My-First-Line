@@ -1,11 +1,5 @@
 import React, { useState, FormEvent, useEffect } from 'react';
-
-type Leader = {
-    id: number;
-    fname: string;
-    lname: string;
-    jobTitle: string;
-};
+import type {Leader} from './LeaderType.ts'
 
 const SubmitReview: React.FC = () => {
     const [selectedLeaderId, setSelectedLeaderId] = useState<string>('');
@@ -16,9 +10,9 @@ const SubmitReview: React.FC = () => {
     useEffect(() => {
         const fetchLeaders = async () => {
             try {
-                const response = await fetch('/api/v1/leader');
+                const response = await fetch("/api/v1/leader/all");
                 const data: Leader[] = await response.json();
-                setLeaders(data);                           // was setName(data) — wrong state
+                setLeaders(data);
             } catch (error) {
                 console.error('Failed to get leaders:', error);
             } finally {
