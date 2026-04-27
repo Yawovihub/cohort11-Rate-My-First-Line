@@ -2,6 +2,7 @@
 import * as yup from "yup";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {type FieldValues, useForm} from "react-hook-form";
+import * as client from "../utilities/APIService.ts";
 
 
 
@@ -25,7 +26,7 @@ const SubmitLeader = () => {
 
     const onSubmit = async (data: FieldValues) => {
         const parsedData: parsedLeader = await leaderSchema.validate(data);
-        console.log(parsedData);
+        await client.postLeaders(parsedData);
         reset();
     }
 
@@ -34,32 +35,38 @@ const SubmitLeader = () => {
         <div>
             <h1>Submit New Leader</h1>
             <form className={"formSubmit"} onSubmit={handleSubmit(e => onSubmit(e))}>
-                <label htmlFor="nameInput">First Name</label>
-                <input id={"nameInput"}
-                       type="text"
-                       placeholder={"Groot"}
-                       {...register("fname")}
-                />
+                <div className={"flex flex-col justify-center items-center gap-3"}>
+                    <div className={"flex flex-row justify-center gap-3"}>
 
+                        <label htmlFor="nameInput">First Name</label>
+                        <input id={"nameInput"}
+                               type="text"
+                               placeholder={"Groot"}
+                               {...register("fname")}
+                        />
+                    </div>
+                    <div className={"flex flex-row justify-center gap-3"}>
 
-                <div>
-                    <label htmlFor={"descriptionField"}>Last Name</label>
-                    <input id={"descriptionField"}
-                           type="text"
-                           placeholder={"I am Groot."}
-                           {...register("lname")}
+                        <label htmlFor={"descriptionField"}>Last Name</label>
+                        <input id={"descriptionField"}
+                               type="text"
+                               placeholder={"I am Groot."}
+                               {...register("lname")}
+                        />
+                    </div>
+                    <div className={"flex flex-row justify-center items-center gap-3"}>
+                    <label htmlFor={"jobTitleField"}>Job Title</label>
+                    <input id={"jobTitleField"}
+                           type={"text"}
+                           placeholder={"Guardian of the Galaxy"}
+                           {...register("jobTitle")}
                     />
                 </div>
-
-                <label htmlFor={"jobTitleField"}>Job Title</label>
-                <input id={"jobTitleField"}
-                       type={"text"}
-                       placeholder={"Guardian of the Galaxy"}
-                       {...register("jobTitle")}
-                       />
-
-                <button type="reset">Reset</button>
-                <button type="submit" >Submit</button>
+                <div className={"flex flex-row justify-center items-center gap-5"}>
+                    <button type="reset">Reset</button>
+                    <button type="submit" >Submit</button>
+                </div>
+                </div>
             </form>
         </div>
     );

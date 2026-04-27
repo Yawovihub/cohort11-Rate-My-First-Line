@@ -1,6 +1,5 @@
-import React, { useState, FormEvent, useEffect } from 'react';
-import type {Leader} from '../utilities/LeaderType';
-import {getLeaders, postLeaders, postReviews} from '../utilities/APIService.ts';
+import React, {useState, useEffect, type FormEvent} from 'react';
+import type {Leader} from '../utilities/LeaderType.ts'
 
 
 const SubmitReview: React.FC = () => {
@@ -9,14 +8,12 @@ const SubmitReview: React.FC = () => {
     const [leaders, setLeaders] = useState<Leader[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
 
-
-
-
     useEffect(() => {
         const fetchLeaders = async () => {
             try {
-                const response = await getLeaders();
-                setLeaders(response);
+                const response = await fetch("/api/v1/leader/all");
+                const data: Leader[] = await response.json();
+                setLeaders(data);
             } catch (error) {
                 console.error('Failed to get leaders:', error);
             } finally {
@@ -25,11 +22,6 @@ const SubmitReview: React.FC = () => {
         };
         fetchLeaders();
     }, []);
-
-    const onSubmit = async (leaders: Leader) => {
-        await postLeaders(leaders);
-        handleReset();
-    }
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
@@ -45,7 +37,7 @@ const SubmitReview: React.FC = () => {
 
             <h1>Submit a Review</h1>
 
-            <form  className="formSubmit">
+            <form onSubmit={handleSubmit} className="formSubmit">
                 <label>Name</label>
                 {loading ? (
                     <p>Loading leaders...</p>
@@ -66,24 +58,15 @@ const SubmitReview: React.FC = () => {
                 <label>Description</label>
                 <input
                     type="text"
-                    aria-label="input"
-                    id="textbox"
+                    value={description}
                     onChange={(e) => setDescription(e.target.value)}
                 />
                 </div>
 
                 <label>Rating:</label>
-                <p>Rating to do later</p>
 
-                <div>
                 <button type="reset" onClick={handleReset}>Reset</button>
-                </div>
-                <button
-                    type="submit"
-                    aria-label="button"
-                    className="submitButton"
-                >Submit</button>
-
+                <button type="submit">Submit</button>
             </form>
         </div>
     );
