@@ -1,5 +1,5 @@
-import React, { useState, FormEvent, useEffect } from 'react';
-import type {Leader} from './LeaderType.ts'
+import React, {useState, useEffect, type FormEvent} from 'react';
+import type {Leader} from '../utilities/LeaderType.ts'
 
 
 const SubmitReview: React.FC = () => {

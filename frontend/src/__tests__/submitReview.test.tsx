@@ -1,4 +1,4 @@
-import {render, screen, within} from '@testing-library/react';
+import {render, screen} from '@testing-library/react';
 import SubmitReview from "../components/SubmitReview.tsx";
 
 describe('Submit Review Form Testing', () => {
@@ -12,7 +12,6 @@ describe('Submit Review Form Testing', () => {
         expect(
             screen.getByRole('button', {name: /submit/i}),
         ).toBeInTheDocument();
-
     });
 
 });

@@ -1,5 +1,5 @@
 export type Leader = {
-    id: number;
+    id?: number;
     fname: string;
     lname: string;
     jobTitle: string;
