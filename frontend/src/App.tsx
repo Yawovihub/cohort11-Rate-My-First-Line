@@ -1,12 +1,11 @@
-import SubmitReview from './components/SubmitReview.tsx'
-import ReviewCard from "./components/ReviewCard.tsx";
-import SubmitLeader from "./components/SubmitLeader.tsx";
+import ViewReviews from "./pages/ViewReviews.tsx";
 
 const App = () => {
     return (
         <div>
 
-            <SubmitLeader/>
+            <ViewReviews/>
+            {/*<SubmitLeader/>*/}
 
         </div>
     );

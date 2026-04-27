@@ -16,7 +16,7 @@ CREATE TABLE review
     id          BIGINT           NOT NULL,
     leader_id   BIGINT           NOT NULL,
     rating      DOUBLE PRECISION NOT NULL,
-    description VARCHAR(255),
+    description TEXT,
     date        date,
     CONSTRAINT pk_review PRIMARY KEY (id)
 );

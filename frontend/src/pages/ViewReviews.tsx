@@ -1,4 +1,3 @@
-
 import ReviewCard from "../components/ReviewCard.tsx";
 import type {Review} from "../utilities/ReviewTypes.ts";
 import {useEffect, useState} from "react";
@@ -15,14 +14,13 @@ const ViewReviews = () => {
         fetchReviews()
     }, [])
     return (
-        <div>
+        <div className={"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 mt-2 justify-items-center"}>
             {
                 reviews &&
                 reviews.map((review) => {
                     return <ReviewCard key={review.id} date={review.date} rating={review.rating} description={review.description}/>
                 })
             }
-
         </div>
     );
 };
