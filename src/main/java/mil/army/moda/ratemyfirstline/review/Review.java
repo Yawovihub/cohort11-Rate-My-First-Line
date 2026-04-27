@@ -30,6 +30,7 @@ private Long id;
 
     private double rating;
 
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     public LocalDate getDate() {
