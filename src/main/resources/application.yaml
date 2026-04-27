@@ -16,19 +16,5 @@ spring:
 
   flyway:
     enabled: true
-<<<<<<< Updated upstream
     locations: classpath:db/migration
     baseline-on-migrate: true
-=======
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    locations: classpath:db/migration
-    baseline-on-migrate: true
-
-=======
-    locations: classpath:db/migration
->>>>>>> Stashed changes
-=======
-    locations: classpath:db/migration
->>>>>>> Stashed changes
->>>>>>> Stashed changes

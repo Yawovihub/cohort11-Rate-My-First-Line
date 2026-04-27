@@ -1,11 +1,10 @@
-import ViewReviews from "./pages/ViewReviews.tsx";
+import ReviewForm from './components/ReviewForm.tsx'
 
 const App = () => {
     return (
         <div>
 
-            <ViewReviews/>
-            {/*<SubmitLeader/>*/}
+          <ReviewForm/>
 
         </div>
     );

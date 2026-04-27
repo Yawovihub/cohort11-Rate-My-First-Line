@@ -3,5 +3,5 @@ export type Review = {
     leaderId? : number;
     rating: number;
     description: string;
-    date: Date;
+    date?: Date;
 }

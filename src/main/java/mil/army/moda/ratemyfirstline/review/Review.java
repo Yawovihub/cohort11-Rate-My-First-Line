@@ -7,7 +7,6 @@ import java.time.LocalDate;
 
 @Entity
 public class Review {
-
 @GeneratedValue
 @Id
 private Long id;
