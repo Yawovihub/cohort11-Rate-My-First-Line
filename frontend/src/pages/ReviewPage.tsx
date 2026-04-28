@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import ReviewForm from '../components/ReviewForm.tsx';
+import ViewReviews from "./ViewReviews.tsx";
 
 export const ReviewPage = () => {
     const [isFormOpen, setIsFormOpen] = useState(false);
@@ -23,6 +24,7 @@ export const ReviewPage = () => {
             <ul id={'list'}>
                 <li>No Reviews</li>
             </ul>
+            <ViewReviews></ViewReviews>
         </>
     )
 }
