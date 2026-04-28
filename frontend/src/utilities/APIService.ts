@@ -25,5 +25,5 @@ export const getReviews = async (): Promise<Review[]> => {
 }
 
 export const postReviews = async (review: Review): Promise<Review> => {
-    return await client.post<Review>("api/vi/review", review).then(r => r.data);
+    return await client.post<Review>("api/v1/review", review).then(r => r.data);
 }
