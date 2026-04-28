@@ -58,6 +58,7 @@ export const ReviewForm = ({isOpen, onClose, onSuccess}: ReviewFormProps) => {
     }, []);
 
     const onSubmit = async (dataFromForm: formData) => {
+        console.log("Debug")
         const parsedData : formData = await validationSchema.validate(dataFromForm);
         console.log("Parsed Data", parsedData);
 
@@ -109,12 +110,24 @@ export const ReviewForm = ({isOpen, onClose, onSuccess}: ReviewFormProps) => {
                     />
                 </div>
 
-                <label>Date:</label>
-                <input type={"date"} {...register("date")} />
+                <label
+                    htmlFor={"dateInput"}>
+                    Date:
+                </label>
+                <input
+                    id={"dateInput"}
+                    type={"date"}
+                    {...register("date")} />
 
 
-                <label>Rating:</label>
-                <input type={"number"} {...register("rating", { valueAsNumber: true })} />
+                <label
+                htmlFor={"ratingInput"}>
+                    Rating:
+                </label>
+                <input
+                    id={"ratingInput"}
+                    type={"number"}
+                    {...register("rating", { valueAsNumber: true })} />
 
                 <div className={"flex justify-center gap-3"}>
                     <button type="reset">Reset</button>
