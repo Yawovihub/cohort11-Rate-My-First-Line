@@ -11,6 +11,7 @@ const ReviewCard = ({date, rating, description} : ReviewProps) => {
     const month = date.getMonth();
     const year = date.getFullYear();
     const formatted = `${day}/${month}/${year}`;
+
     return (
         <div className={"flex flex-col w-50 border rounded bg-white p-2 wrap-break-word"}>
             <p>{formatted}</p>

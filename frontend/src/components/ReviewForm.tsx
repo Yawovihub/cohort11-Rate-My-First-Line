@@ -88,8 +88,9 @@ export const ReviewForm = ({isOpen, onClose, onSuccess}: ReviewFormProps) => {
                     <p>Loading leaders...</p>
                 ) : (
                     <select
-                        {...register("leaderId")}
+                        {...register("leaderId", { valueAsNumber: true })}
                     >
+                        {/*telling RHF to cast leaderId as number instead of string*/}
                         <option value="">Select a leader</option>
                         {leaders.map((leader) => (
                             <option key={leader.id} value={leader.id}>

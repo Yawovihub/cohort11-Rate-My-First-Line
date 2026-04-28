@@ -1,18 +1,12 @@
 package mil.army.moda.ratemyfirstline.leader;
 
 import jakarta.persistence.*;
-import mil.army.moda.ratemyfirstline.review.Review;
-
-import java.util.List;
 
 @Entity
 public class Leader {
     @Id
     @GeneratedValue
     private Long id;
-
-    @OneToMany(mappedBy = "leader")
-    private List<Review> reviews;
 
     private String fname;
     private String lname;
@@ -22,7 +16,6 @@ public class Leader {
     }
 
     public Leader( String fname, String lname, String jobTitle) {
-        this.id = id;
         this.fname = fname;
         this.lname = lname;
         this.jobTitle = jobTitle;

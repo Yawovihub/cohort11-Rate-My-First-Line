@@ -57,6 +57,9 @@ private Long id;
         return this;
     }
 
+    public Leader getLeader() {
+        return leader;
+    }
 
     public Review setLeader(Leader leader) {
         this.leader = leader;

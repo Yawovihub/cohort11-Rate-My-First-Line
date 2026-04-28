@@ -20,7 +20,7 @@ public class ReviewService {
     }
 
     public List<Review> findAllReviews(){
-        return reviewRepo.findAll();
+        return reviewRepo.findAllWithLeader();
     }
 
     public Review findReviewById (Long id){
