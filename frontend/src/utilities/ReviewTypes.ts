@@ -5,5 +5,5 @@ export type Review = {
     };
     rating: number;
     description: string;
-    date?: Date;
+    date?: Date | string;
 }

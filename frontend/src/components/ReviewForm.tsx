@@ -2,7 +2,6 @@ import {useEffect, useState} from 'react';
 import {useForm} from "react-hook-form";
 import type {Leader} from '../utilities/LeaderType';
 import {getLeaders, postReviews} from '../utilities/APIService.ts';
-import type {Review} from "../utilities/ReviewTypes.ts";
 import * as Yup from "yup";
 import {yupResolver} from "@hookform/resolvers/yup/src";
 import type {InferType} from "yup";
@@ -11,6 +10,7 @@ const validationSchema = Yup.object({
     leaderId: Yup.number().required("Please select a leader"),
     rating: Yup.number().min(1).max(10).required("Rating is required"),
     description: Yup.string().required("Description is required"),
+    date: Yup.date().required("Date required")
 });
 type formData = InferType<typeof validationSchema>
 
@@ -30,7 +30,7 @@ export const ReviewForm = ({isOpen, onClose, onSuccess}: ReviewFormProps) => {
         register,
         reset,
         formState: {errors}
-    } = useForm<Review>({
+    } = useForm<formData>({
         mode: "onBlur",
         resolver: yupResolver(validationSchema)
     });
@@ -56,20 +56,31 @@ export const ReviewForm = ({isOpen, onClose, onSuccess}: ReviewFormProps) => {
         fetchLeaders();
     }, []);
 
-    const onSubmit = async (review: Review) => {
-        const parsedData : formData = await validationSchema.validate(review);
-        console.log(parsedData);
-        await postReviews(review);
+    const onSubmit = async (dataFromForm: formData) => {
+        const parsedData : formData = await validationSchema.validate(dataFromForm);
+        console.log("Parsed Data", parsedData);
+
+        const payload = {
+            rating : parsedData.rating,
+            description: parsedData.description,
+
+            // Extract the local year, month, and day into a YYYY-MM-DD string
+            date: `${parsedData.date.getFullYear()}-${String(parsedData.date.getMonth() + 1).padStart(2, '0')}-${String(parsedData.date.getDate()).padStart(2, '0')}`,
+
+            leader: {
+                id: parsedData.leaderId
+            }
+        }
+
+        console.log("Converted Data", payload);
+        await postReviews(payload);
         reset();
         onSuccess?.();
-        onClose();
+        onClose?.();
     }
 
     return (
         <div>
-
-            <h1>Submit a Review</h1>
-
             <form onSubmit={handleSubmit(e => onSubmit(e))} method={"POST"} className="formSubmit">
                 <label>Name</label>
                 {loading ? (

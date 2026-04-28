@@ -1,13 +1,13 @@
-import ReviewForm from './components/ReviewForm.tsx'
+import {ReviewPage} from "./pages/ReviewPage.tsx";
 
-const App = () => {
+export const App = () => {
     return (
         <div>
 
-          <ReviewForm/>
+            <ReviewPage/>
 
         </div>
-    );
-};
+    )
+}
 
 export default App;
