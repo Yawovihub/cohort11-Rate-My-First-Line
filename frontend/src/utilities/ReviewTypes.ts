@@ -1,9 +1,18 @@
 export type Review = {
     id?: number; // a new review may not have an id unless the backend creates it.
-    leader : {
-        id: number
-    };
+    leader: {
+        id : number;
+    }
     rating: number;
     description: string;
-    date?: Date | string;
+    date: Date
+}
+
+export type ReviewPost = {
+    leader: {
+        id : number,
+    }
+    rating: number,
+    description: string,
+    date: string
 }

@@ -12,7 +12,9 @@ describe('View Reviews Test', () => {
     beforeEach(() => {
         reviewOne = {
             id: 1,
-            leaderId: 1,
+            leader:{
+                id: 1
+            } ,
             date: new Date(Date.now()),
             rating: 10,
             description: "test"

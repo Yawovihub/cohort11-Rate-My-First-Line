@@ -3,8 +3,9 @@ import {useForm} from "react-hook-form";
 import type {Leader} from '../utilities/LeaderType';
 import {getLeaders, postReviews} from '../utilities/APIService.ts';
 import * as Yup from "yup";
-import {yupResolver} from "@hookform/resolvers/yup/src";
+import {yupResolver} from "@hookform/resolvers/yup";
 import type {InferType} from "yup";
+import type {ReviewPost} from "../utilities/ReviewTypes.ts";
 
 const validationSchema = Yup.object({
     leaderId: Yup.number().required("Please select a leader"),
@@ -60,14 +61,14 @@ export const ReviewForm = ({isOpen, onClose, onSuccess}: ReviewFormProps) => {
         const parsedData : formData = await validationSchema.validate(dataFromForm);
         console.log("Parsed Data", parsedData);
 
-        const payload = {
+        const payload : ReviewPost = {
             rating : parsedData.rating,
             description: parsedData.description,
 
             // Extract the local year, month, and day into a YYYY-MM-DD string
             date: `${parsedData.date.getFullYear()}-${String(parsedData.date.getMonth() + 1).padStart(2, '0')}-${String(parsedData.date.getDate()).padStart(2, '0')}`,
 
-            leader: {
+            leader:{
                 id: parsedData.leaderId
             }
         }
@@ -114,15 +115,15 @@ export const ReviewForm = ({isOpen, onClose, onSuccess}: ReviewFormProps) => {
                 <label>Rating:</label>
                 <input type={"number"} {...register("rating", { valueAsNumber: true })} />
 
-                <div>
+                <div className={"flex justify-center gap-3"}>
                     <button type="reset">Reset</button>
+                    <button
+                        type="submit"
+                        aria-label="submit"
+                        className="submitButton"
+                    >Submit
+                    </button>
                 </div>
-                <button
-                    type="submit"
-                    aria-label="button"
-                    className="submitButton"
-                >Submit
-                </button>
 
             </form>
         </div>

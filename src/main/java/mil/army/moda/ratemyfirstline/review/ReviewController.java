@@ -28,7 +28,6 @@ public class ReviewController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Review> findReviewById (@PathVariable Long id){
-
         return null;
     }
 }
