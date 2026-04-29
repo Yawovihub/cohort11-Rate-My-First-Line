@@ -23,6 +23,10 @@ public class ReviewService {
         return reviewRepo.findAllWithLeader();
     }
 
+    public List<Review> findReviewsByLeaderId (Long id){
+        return reviewRepo.findByLeaderId(id);
+    }
+
     public Review findReviewById (Long id){
         return reviewRepo.findById(id).orElseThrow();
     }

@@ -26,6 +26,11 @@ public class ReviewController {
         return reviewService.findAllReviews();
     }
 
+    @GetMapping("/leader/{id}")
+    public List<Review> findAllByLeaderId(@PathVariable Long id){
+        return reviewService.findReviewsByLeaderId(id);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Review> findReviewById (@PathVariable Long id){
         return null;

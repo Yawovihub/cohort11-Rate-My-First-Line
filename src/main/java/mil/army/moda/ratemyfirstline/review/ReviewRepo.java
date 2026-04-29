@@ -11,6 +11,7 @@ public interface ReviewRepo extends JpaRepository<Review, Long> {
 
     @Query("SELECT r FROM Review r JOIN FETCH r.leader")
     List<Review> findAllWithLeader();
+    List<Review> findByLeaderId(Long id);
     // N+1 problem, for every review it's firing a separate SELECT to load the leader
     // with N reviews you get N extra queries
 }

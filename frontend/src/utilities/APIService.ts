@@ -12,6 +12,10 @@ export const postLeaders = async (leader: Leader): Promise<Leader> => {
     return await client.post<Leader>("api/v1/leader", leader).then(r => r.data);
 }
 
+export const getReviewsByLeaderId = async (leaderId: number) : Promise<Review[]> => {
+    return await client.get<Review[]>(`api/v1/review/leader/${leaderId}`).then(r => r.data);
+}
+
 export const getReviews = async (): Promise<Review[]> => {
     return await client.get<Review[]>("api/v1/review").then(r => {
         const data = r.data;

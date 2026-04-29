@@ -13,13 +13,6 @@ private Long id;
 
 
 
-    public Review(Leader leader, double rating, String description, LocalDate date) {
-        this.leader = leader;
-        this.rating = rating;
-        this.description = description;
-        this.date = date;
-    }
-
 
     @ManyToOne
     @JoinColumn(name="leader_id", referencedColumnName = "id", nullable = false)
@@ -32,6 +25,15 @@ private Long id;
 
     public LocalDate getDate() {
         return date;
+    }
+
+    private LocalDate date;
+
+    public Review(Leader leader, double rating, String description, LocalDate date) {
+        this.leader = leader;
+        this.rating = rating;
+        this.description = description;
+        this.date = date;
     }
 
     public Review setDate(LocalDate date) {
@@ -74,8 +76,6 @@ private Long id;
         this.id = id;
         return this;
     }
-
-    private LocalDate date;
 
 
     public Review() {
