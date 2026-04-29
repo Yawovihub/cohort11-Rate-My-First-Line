@@ -1,5 +1,7 @@
 import SubmitLeader from "../components/SubmitLeader.tsx";
 import {render, screen} from "@testing-library/react";
+import {expect, describe, it} from "vitest";
+
 
 describe('Leader Submission Page', () => {
     it('should display submit new leader heading', () => {

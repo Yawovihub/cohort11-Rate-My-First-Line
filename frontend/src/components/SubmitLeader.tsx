@@ -40,7 +40,7 @@ const SubmitLeader = () => {
 
                         <label htmlFor="nameInput">First Name</label>
                         <input id={"nameInput"}
-                               type="text"
+                               type={"text"}
                                placeholder={"Groot"}
                                {...register("fname")}
                         />
