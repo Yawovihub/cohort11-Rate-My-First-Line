@@ -38,11 +38,11 @@ describe('Submit Review Form Testing', () => {
 
     it('should type into description and submit from FE to BE', async () => {
 
-        const reviewSubmitTest = vi.spyOn(apiService, 'postReviews').mockResolvedValue(initialReview)
+        const reviewSubmitTest: Review = vi.spyOn(apiService, 'postReviews').mockResolvedValue(initialReview)
 
         const getLeadersTest = vi.spyOn(apiService, 'getLeaders').mockResolvedValue(arrayLeaders);
 
-        render(<ReviewForm isOpen={false} onClose={function(): void {
+        render(<ReviewForm isOpen={true} onClose={function(): void {
             throw new Error("Function not implemented.");
         } }/>)
 
@@ -76,9 +76,8 @@ describe('Submit Review Form Testing', () => {
         expect(rating).toHaveValue(initialReview.rating);
 
 
-        const submit = screen.getByRole('button', {name: /submit/i});
+        const submit = screen.getByRole('button', {name: /Submit/i});
 
-        screen.logTestingPlaygroundURL();
         fireEvent.click(submit);
         await waitFor(() =>{
             expect(reviewSubmitTest).toHaveBeenCalledOnce()
