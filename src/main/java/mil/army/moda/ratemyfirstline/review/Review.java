@@ -7,15 +7,13 @@ import java.time.LocalDate;
 
 @Entity
 public class Review {
-@GeneratedValue
-@Id
-private Long id;
-
-
+    @GeneratedValue
+    @Id
+    private Long id;
 
 
     @ManyToOne
-    @JoinColumn(name="leader_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "leader_id", referencedColumnName = "id", nullable = false)
     private Leader leader;
 
     private double rating;
