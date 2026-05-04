@@ -16,6 +16,8 @@ public class Review {
     @JoinColumn(name = "leader_id", referencedColumnName = "id", nullable = false)
     private Leader leader;
 
+
+
     private double rating;
 
     @Column(columnDefinition = "TEXT")
