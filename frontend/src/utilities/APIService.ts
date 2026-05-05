@@ -1,6 +1,7 @@
 import axios from "axios";
 import type {Leader} from './LeaderType.ts'
-import type {Review, ReviewPost} from "./ReviewTypes.ts";
+import type {Review, ReviewCommentPost, ReviewPost} from "./ReviewTypes.ts";
+import type {ReviewComment} from "./ReviewCommentType.ts";
 
 const client = axios.create();
 
@@ -31,3 +32,20 @@ export const getReviews = async (): Promise<Review[]> => {
 export const postReviews = async (review: ReviewPost): Promise<Review> => {
     return await client.post<Review>("api/v1/review", review).then(r => r.data);
 }
+
+export const getReviewComments = async (): Promise<ReviewComment[]> =>{
+    return await client.get<ReviewComment[]>("api/v1/reviewComment").then(rc => {
+        const data = rc.data;
+        return data.map(
+            reviewComment => ({
+                ...reviewComment
+            })
+        )
+    })
+}
+
+export const postReviewComment = async (reviewComment: ReviewCommentPost): Promise<ReviewComment> => {
+    return await client.post<ReviewComment>("api/v1/reviewComment", reviewComment).then( rc => rc.data);
+}
+
+

@@ -16,3 +16,10 @@ export type ReviewPost = {
     description: string,
     date: string
 }
+
+export type ReviewCommentPost ={
+    review:{
+        id: number;
+        reviewComment: string;
+    }
+}

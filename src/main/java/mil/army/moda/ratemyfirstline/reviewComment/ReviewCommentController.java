@@ -27,7 +27,7 @@ public class ReviewCommentController {
         return reviewCommentService.findByReviewId(id);
     }
 
-    @DeleteMapping("/{reviwComment/{id}")
+    @DeleteMapping("/{reviewComment/{id}")
     public ResponseEntity<Void> deletReviewComment(@PathVariable Long id){
         reviewCommentService.deleteReviewComment(id);
         return ResponseEntity.noContent().build();
