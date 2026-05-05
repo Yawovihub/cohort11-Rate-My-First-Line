@@ -49,3 +49,11 @@ export const postReviewComment = async (reviewComment: ReviewCommentPost): Promi
 }
 
 
+export const deleteReviewComment = async (id: number) => {
+    try {
+        await client.delete(`api/v1/reviewComment/${id}`).then(rc =>rc.data)
+    } catch (error) {
+        console.error('Error deleting review comment:', error);
+        throw error;
+    }
+};
