@@ -1,25 +1,27 @@
 import StarRatingItem from "./StarRatingItem.tsx";
+import type {Review} from "../utilities/ReviewTypes.ts";
 
 type ReviewProps = {
-    date: Date,
-    rating: number,
-    description: string
+    review : Review
+    setReview: (review : Review) => void;
+    openModal : (bool : boolean) => void;
 }
 
-const ReviewCard = ({date, rating, description} : ReviewProps) => {
+const ReviewCard = ({review, setReview, openModal} : ReviewProps) => {
+    const date = review.date;
     const day = date.getDate();
     const month = date.getMonth();
     const year = date.getFullYear();
     const formatted = `${day}/${month}/${year}`;
 
     return (
-        <div className={"flex flex-col w-50 border rounded bg-white p-2 wrap-break-word"}>
+        <div onClick={() => {setReview(review); openModal(true)}} className={"flex flex-col w-50 border rounded bg-white p-2 wrap-break-word"}>
             <p>{formatted}</p>
             <div id="starRating" className="flex items-center justify-center space-x-1">
-                <StarRatingItem rating={rating}/>
+                <StarRatingItem rating={review.rating}/>
             </div>
             <div className={"flex-col items-center md:items-start"}>
-                <p>{description}</p>
+                <p>{review.description}</p>
             </div>
         </div>
     );

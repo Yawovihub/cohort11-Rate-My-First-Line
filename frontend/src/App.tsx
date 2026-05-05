@@ -7,8 +7,8 @@ import ReviewModal from "./components/ReviewModal.tsx";
 export const App = () => {
     return (
         <div>
-            {/*<Navbar/>*/}
-            <ReviewModal/>
+            <Navbar/>
+
         </div>
     )
 }

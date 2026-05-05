@@ -33,6 +33,10 @@ public class ReviewComment {
         return reviewComment;
     }
 
+    public void setReview(Review review) {
+        this.review = review;
+    }
+
     public ReviewComment setReviewComment(String reviewComment) {
         this.reviewComment = reviewComment;
         return this;

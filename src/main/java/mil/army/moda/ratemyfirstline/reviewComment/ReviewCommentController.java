@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/reviewComment")
+@RequestMapping("/api/v1")
 public class ReviewCommentController {
     private final ReviewCommentService reviewCommentService;
 
@@ -16,10 +16,11 @@ public class ReviewCommentController {
         this.reviewCommentService = reviewCommentService;
     }
 
-    @PostMapping()
+    @PostMapping("/reviewComment/{id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public ReviewComment saveReviewComment(@RequestBody ReviewComment reviewComment){
-        return reviewCommentService.saveReviewComment(reviewComment);
+    public ReviewComment saveReviewComment(@RequestBody ReviewComment reviewComment, @PathVariable Long id){
+        System.out.println(id);
+        return reviewCommentService.saveReviewComment(reviewComment, id);
     }
 
     @GetMapping("/reviewComment/{id}")
@@ -27,8 +28,8 @@ public class ReviewCommentController {
         return reviewCommentService.findByReviewId(id);
     }
 
-    @DeleteMapping("/{reviewComment/{id}")
-    public ResponseEntity<Void> deletReviewComment(@PathVariable Long id){
+    @DeleteMapping("/reviewComment/{id}")
+    public ResponseEntity<Void> deleteReviewComment(@PathVariable Long id){
         reviewCommentService.deleteReviewComment(id);
         return ResponseEntity.noContent().build();
     }

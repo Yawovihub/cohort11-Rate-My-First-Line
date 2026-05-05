@@ -1,14 +1,20 @@
-const StarRatingItem = ({rating} : {rating : number}) => {
+type RatingProps = {
+    rating : number,
+    width?: string,
+    height?: string
+}
+
+const StarRatingItem = ({rating, width, height} : RatingProps) => {
     const filledCount = Math.round(rating / 2);
     return (
         <>
             {Array.from( {length : 5}, (_, i) => (
                 <svg key={i}
-                    className={`w-5 h-5 text-fg-disabled ${i < filledCount ? 'text-amber-300' : 'text-fg-disabled'}`}
+                    className={`${width ? `w-${width}` : `w-5`} ${height ? `h-${height}` : `h-5`} text-fg-disabled ${i < filledCount ? 'text-amber-300' : 'text-fg-disabled'}`}
                      aria-hidden="true"
                      xmlns="http://www.w3.org/2000/svg"
-                     width="24"
-                     height="24"
+                     width={width ? width : 24}
+                     height={height ? height : 24}
                      fill="currentColor"
                      viewBox="0 0 24 24">
                     <path

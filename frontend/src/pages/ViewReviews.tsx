@@ -1,14 +1,25 @@
 import ReviewCard from "../components/ReviewCard.tsx";
 import type {Review} from "../utilities/ReviewTypes.ts";
-import {useEffect, useState} from "react";
+import {use, useEffect, useState} from "react";
 import * as client from "../utilities/APIService.ts"
 import type {Leader} from "../utilities/LeaderType.ts";
+import ReviewModal from "../components/ReviewModal.tsx";
 
 
 const ViewReviews = () => {
     const [reviews, setReviews] = useState<Review[]>([])
     const [leaders, setLeaders] = useState<Leader[]>([])
     const [selectedLeaderId, setSelectedLeaderId] = useState<number | "all">("all")
+    const [isReviewModalOpen, setIsReviewModalOpen] = useState<boolean>(false);
+    const [currentReview, setCurrentReview] = useState<Review>();
+
+    const openModal = (bool : boolean) => {
+        setIsReviewModalOpen(bool);
+    }
+
+    const setReview = (review : Review) => {
+        setCurrentReview(review)
+    }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -48,14 +59,12 @@ const ViewReviews = () => {
             <div className={"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 mt-2 justify-items-center"}>
                 {
                     filteredReviews.map((review) => (
-                        <ReviewCard key={review.id}
-                                    date={review.date}
-                                    rating={review.rating}
-                                    description={review.description}
+                        <ReviewCard key={review.id} review={review} setReview={setReview} openModal={setIsReviewModalOpen}
                         />
                     ))
                 }
             </div>
+            {currentReview && <ReviewModal review={currentReview} modalState={isReviewModalOpen} handleModal={openModal}/>}
         </div>
     );
 };

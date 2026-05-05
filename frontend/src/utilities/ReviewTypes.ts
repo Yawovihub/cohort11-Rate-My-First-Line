@@ -1,5 +1,5 @@
 export type Review = {
-    id?: number; // a new review may not have an id unless the backend creates it.
+    id: number;
     leader: {
         id : number;
     }
@@ -18,8 +18,6 @@ export type ReviewPost = {
 }
 
 export type ReviewCommentPost ={
-    review:{
-        id: number;
-        reviewComment: string;
-    }
+        review_id: number;
+        reviewComment: string | undefined;
 }

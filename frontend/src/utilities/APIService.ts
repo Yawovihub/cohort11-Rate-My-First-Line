@@ -33,8 +33,8 @@ export const postReviews = async (review: ReviewPost): Promise<Review> => {
     return await client.post<Review>("api/v1/review", review).then(r => r.data);
 }
 
-export const getReviewComments = async (): Promise<ReviewComment[]> =>{
-    return await client.get<ReviewComment[]>("api/v1/reviewComment").then(rc => {
+export const getReviewComments = async (reviewId : number): Promise<ReviewComment[]> =>{
+    return await client.get<ReviewComment[]>(`api/v1/reviewComment/${reviewId}`).then(rc => {
         const data = rc.data;
         return data.map(
             reviewComment => ({
@@ -44,8 +44,8 @@ export const getReviewComments = async (): Promise<ReviewComment[]> =>{
     })
 }
 
-export const postReviewComment = async (reviewComment: ReviewCommentPost): Promise<ReviewComment> => {
-    return await client.post<ReviewComment>("api/v1/reviewComment", reviewComment).then( rc => rc.data);
+export const postReviewComment = async (reviewComment: ReviewCommentPost, id: number): Promise<ReviewComment> => {
+    return await client.post<ReviewComment>(`api/v1/reviewComment/${id}`, reviewComment).then( rc => rc.data);
 }
 
 
