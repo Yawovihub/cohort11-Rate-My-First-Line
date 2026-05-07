@@ -5,9 +5,8 @@ import Comment from "../components/Comment.tsx"
 import {useEffect, useState} from "react";
 import * as APIService from "../utilities/APIService.ts"
 import * as Yup from "yup";
-import {useForm} from "react-hook-form";
+import {type FieldValues, useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
-import comment from "../components/Comment.tsx";
 
 type ModalProps = {
     review : Review
@@ -50,7 +49,7 @@ const ReviewModal = ({review, modalState, handleModal} : ModalProps) => {
             fetchComments();
     },[review])
 
-    const submit = async (e) => {
+    const submit = async (e :FieldValues) => {
         const parseData = await commentSchema.validate(e)
         const review_Comment: ReviewCommentPost = {
 
@@ -59,6 +58,7 @@ const ReviewModal = ({review, modalState, handleModal} : ModalProps) => {
 
         }
         await APIService.postReviewComment(review_Comment, review.id)
+        await fetchComments()
         reset()
     }
 
@@ -81,7 +81,7 @@ const ReviewModal = ({review, modalState, handleModal} : ModalProps) => {
                         <textarea className={"w-full h-2/3 align-text-top p-1 border rounded"} placeholder={"Leave a comment..."}{...register("comment")}/>
                         <button type={"submit"} className={ "p-2 border-1 rounded w-1/2 self-center hover:cursor-pointer hover:bg-gray-400 hover:text-black"}>Submit</button>
                     </form>
-                    {commentsWhatever && commentsWhatever.map(comment => <Comment comment={comment}/> )}
+                    {commentsWhatever && commentsWhatever.map(comment => <Comment comment={comment} key={comment.id}/> )}
                 </div>
             </div>
         </div>

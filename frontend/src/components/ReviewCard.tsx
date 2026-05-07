@@ -15,7 +15,7 @@ const ReviewCard = ({review, setReview, openModal} : ReviewProps) => {
     const formatted = `${day}/${month}/${year}`;
 
     return (
-        <div onClick={() => {setReview(review); openModal(true)}} className={"flex flex-col w-50 border rounded bg-white p-2 wrap-break-word"}>
+        <div onClick={() => {setReview(review); openModal(true)}} className={"flex flex-col w-50 border rounded bg-white hover:bg-gray-200 p-2 wrap-break-word hover:cursor-pointer"}>
             <p>{formatted}</p>
             <div id="starRating" className="flex items-center justify-center space-x-1">
                 <StarRatingItem rating={review.rating}/>
