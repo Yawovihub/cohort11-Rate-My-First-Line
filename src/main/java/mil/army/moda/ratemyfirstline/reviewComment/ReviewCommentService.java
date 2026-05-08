@@ -43,4 +43,23 @@ public class ReviewCommentService {
         return reviewCommentRepo.findByReviewId(id);
     }
 
+    public ReviewComment addUpVote(Long upvote, Long id){
+        Optional<ReviewComment> foundComment = reviewCommentRepo.findById(id);
+        if(foundComment.isPresent()){
+            ReviewComment newVote = foundComment.get();
+            newVote.setUp(upvote);
+            return reviewCommentRepo.save(newVote);
+        }
+        return null;
+    }
+    public ReviewComment addDownVote(Long downVote, Long id){
+        Optional<ReviewComment> foundComment = reviewCommentRepo.findById(id);
+        if(foundComment.isPresent()){
+            ReviewComment newVote = foundComment.get();
+            newVote.setDown(downVote);
+            return reviewCommentRepo.save(newVote);
+        }
+        return null;
+    }
+
 }

@@ -64,7 +64,7 @@ const ReviewModal = ({review, modalState, handleModal} : ModalProps) => {
 
     return (
         <div hidden={!modalState} onClick={() => handleModal(false)} className={`fixed flex flex-row w-screen h-screen justify-center inset-0 items-center ${modalState ? `z-50` : `-z-1`}`}>
-            <div onClick={e => e.stopPropagation()} className={`gap-2 group select-none w-1/2 h-1/3 flex flex-col p-4 relative items-center justify-center bg-gray-800 border border-gray-800 shadow-lg rounded-2xl ${modalState && `z-10`}`}>
+            <div onClick={e => e.stopPropagation()} className={`gap-2 group select-none w-1/2 min-h-1/3 max-h-fit flex flex-col p-4 relative items-center justify-center bg-gray-800 border border-gray-800 shadow-lg rounded-2xl ${modalState && `z-10`}`}>
                 <div className={"flex flex-col w-full h-3/5 justify-between grow"}>
                     <div className={"flex-col border-b-1 grow mb-2"}>
                         <div className={"flex flex-col"}>

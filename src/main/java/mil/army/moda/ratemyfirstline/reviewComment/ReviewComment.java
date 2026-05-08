@@ -19,9 +19,14 @@ public class ReviewComment {
     @Column(columnDefinition = "TEXT")
     private String reviewComment;
 
+    @Column(name = "upvote")
+    private Long up;
 
-    public ReviewComment(Long id, String reviewComment) {
-        this.id = id;
+    @Column(name = "downvote")
+    private Long down;
+
+
+    public ReviewComment(String reviewComment) {
         this.reviewComment = reviewComment;
     }
 
@@ -40,5 +45,29 @@ public class ReviewComment {
     public ReviewComment setReviewComment(String reviewComment) {
         this.reviewComment = reviewComment;
         return this;
+    }
+
+    public Long getUp() {
+        return up;
+    }
+
+    public void setUp(Long up) {
+        this.up = up;
+    }
+
+    public Long getDown() {
+        return down;
+    }
+
+    public void setDown(Long down) {
+        this.down = down;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

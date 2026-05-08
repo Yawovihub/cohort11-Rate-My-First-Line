@@ -12,4 +12,5 @@ import java.util.List;
 public interface ReviewCommentRepo extends JpaRepository<ReviewComment, Long> {
     List<ReviewComment> findByReviewId(Long Id);
 
+    Long id(Long id);
 }

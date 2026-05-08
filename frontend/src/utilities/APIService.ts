@@ -57,3 +57,11 @@ export const deleteReviewComment = async (id: number) => {
         throw error;
     }
 };
+
+export const postUpvote= async  (id: number, upvote: number ):Promise<ReviewComment>=>{
+    return await client.post(`/reviewComment/${id}/upvote`, upvote).then(r=> r.data)
+}
+
+export const postDownvote= async  (id: number, downvote: number ):Promise<ReviewComment>=>{
+    return await client.post(`/reviewComment/${id}/downvote`, downvote).then(r=> r.data)
+}

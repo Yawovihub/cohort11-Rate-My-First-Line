@@ -34,4 +34,17 @@ public class ReviewCommentController {
         return ResponseEntity.noContent().build();
     }
 
+    @PostMapping("/reviewComment/{id}/upvote")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<ReviewComment> upVoteById(@PathVariable Long id, @RequestBody Long upvote){
+        ReviewComment newReviewComment =  reviewCommentService.addUpVote(upvote, id);
+        return ResponseEntity.ok(newReviewComment);
+    }
+
+    @PostMapping("/reviewComment/{id}/downvote")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<ReviewComment> downVoteById(@PathVariable Long id, @RequestBody Long downvote){
+        ReviewComment newReviewComment =  reviewCommentService.addDownVote(downvote, id);
+        return ResponseEntity.ok(newReviewComment);
+    }
 }
